@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <title>Contact</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+  <script src="https://cdn.jsdelivr.net/npm/daisyui@4.10.0/dist/full.js"></script>
+  <link href="input.css" rel="stylesheet">
+</head>
+<body class="min-h-screen flex items-center justify-center bg-base-200">
+  <form id="contact-form" class="card bg-base-100 shadow-xl w-full max-w-lg p-6 space-y-4">
+    <h2 class="card-title text-2xl">Formulaire de contact</h2>
+
+    <label class="form-control w-full">
+      <span class="label-text">Nom</span>
+      <input type="text" name="nom" class="input input-bordered bg-gray-200/70 focus:bg-gray-100 w-full" required>
+    </label>
+
+    <label class="form-control w-full">
+      <span class="label-text">Prénom</span>
+      <input type="text" name="prenom" class="input input-bordered bg-gray-200/70 focus:bg-gray-100 w-full" required>
+    </label>
+
+    <label class="form-control w-full">
+      <span class="label-text">Email</span>
+      <input type="email" name="email" class="input input-bordered bg-gray-200/70 focus:bg-gray-100 w-full" required>
+    </label>
+
+   <!-- bloc Message isolé -->
+<fieldset class="border border-gray-300/80 rounded-md p-4 mt-6 bg-gray-50/60">
+  <span class="label-text"> Message </span>
+
+  <textarea
+    name="message"
+    class="textarea textarea-bordered bg-gray-200/70 h-40 w-full resize-none focus:bg-gray-100">
+  </textarea>
+</fieldset>
+
+    <button type="submit" class="btn btn-primary w-full">Envoyer</button>
+  </form>
+
+  <script>
+    /* ouvre la messagerie cliente via mailto et pré-remplit le corps du mail */
+    document.getElementById('contact-form').addEventListener('submit', e => {
+      e.preventDefault();
+      const data = new FormData(e.target);
+      const params = new URLSearchParams(data).toString().replace(/&/g, '%0D%0A');
+      window.location.href = `mailto:mohamed.el-affani@epita.fr?subject=Contact%20depuis%20mon%20CV&body=${params}`;
+    });
+  </script>
+</body>
+</html>
